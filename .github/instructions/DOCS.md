@@ -1,5 +1,5 @@
 ---
-applyTo: "results/issue-<number>/docs/*.md"
+applyTo: "results/issue-*/docs/*.md"
 ---
 
 Documentation in this repository should be concise, technical, and directly tied to the implemented RTL and tests.
@@ -14,7 +14,7 @@ Documentation is organized into:
 If a module/design targets an external standard (e.g. JEDEC DDRx, AMBA AXI, PCIe, USB, Ethernet):
 
 - Capture **standard name + version** and include official citation links.
-- When the reference is **publicly accessible**, store a local copy under `docs/` and link to it from the relevant docs (especially `docs/ARCHITECTURE.md`).
+- When the reference is **publicly accessible**, store a local copy under `results/issue-<number>/docs/refs/` (or another clearly named subfolder under `results/issue-<number>/docs/`) and link to it from the relevant docs (especially `results/issue-<number>/docs/ARCHITECTURE.md`).
 - Do **not** download or redistribute **paywalled/copyrighted** documents. Instead, rely on user-provided excerpts/requirements or public summaries.
 
 ## Architecture doc (`results/issue-<number>/docs/ARCHITECTURE.md`)

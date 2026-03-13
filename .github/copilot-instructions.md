@@ -24,9 +24,10 @@ As Copilot/agent, always treat the issue body + attachments as the **single sour
 
 This repo uses instruction docs under `.github/instructions/`:
 
-- `.github/instructions/VERILOG.md`: RTL + TB coding conventions (auto-applies to `rtl/**/*.v` and `tb/**/*.{v,sv}` via `applyTo` frontmatter).
+- `.github/instructions/VERILOG.md`: RTL + TB coding conventions (auto-applies via `applyTo` frontmatter to both top-level `rtl/**/*.v` / `tb/**/*.{v,sv}` and per-issue workspaces under `results/issue-*/rtl/**/*.v` and `results/issue-*/tb/**/*.{v,sv}`).
 - `.github/instructions/TB.md`: testbench structure, logging/artifact expectations, and per-issue `REPORT.md` requirements.
 - `.github/instructions/DOCS.md`: documentation standards for per-issue docs under `results/issue-<number>/docs/`.
+- `.github/instructions/REPORT.md`: required structure for per-issue `results/issue-<number>/REPORT.md` files (used for both Testbench and Fix workflows).
 
 Do **not** depend on any external planning JSON or legacy `results/` / `PLAN.md` files. Everything you need should be in:
 

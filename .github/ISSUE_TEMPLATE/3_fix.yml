@@ -15,6 +15,8 @@ body:
         4. Copilot/agents will reproduce the problem where possible and propose minimal fixes.
         5. For how Copilot/agents should behave in this repo, see `.github/copilot-instructions.md`.
         6. For testbench expectations (logging, waveforms, reproducibility), see `.github/instructions/TB.md`.
+        7. Copilot/agents must keep all reproduction artifacts under `results/issue-<number>/build/` and generate/update `results/issue-<number>/REPORT.md` capturing: what failed, what changed, the exact commands run, and the post-fix results (pass/fail).
+        8. For the `REPORT.md` structure expected for Fix issues, see `.github/instructions/REPORT.md`.
 
   - type: textarea
     id: files
@@ -33,6 +35,13 @@ body:
           - waveform outputs (e.g. `*_tb.vcd`) when relevant.
         - Propose **minimal fixes** to RTL/TB that address the root cause (compilation error, assertion failure, wrong behavior), and explain why the change is correct.
         - If you touch testbenches, follow `.github/instructions/TB.md` (self-checking, deterministic, VCD/logs).
+        - Create or update `results/issue-<number>/REPORT.md` following `.github/instructions/REPORT.md`, including:
+          - the failure summary (what failed and how to reproduce it),
+          - the root cause analysis (what was wrong),
+          - the fix summary (what changed and why),
+          - the exact compile/run commands used,
+          - links/paths to `build/compile.log`, `build/sim.log`, and any waveforms,
+          - the post-fix outcome (pass/fail) and any remaining known limitations.
         - In your final response, include: what failed, what changed, how to re-run, and where the logs/VCDs are located.
         - Follow the general behavior rules in `.github/copilot-instructions.md`.
       placeholder: |

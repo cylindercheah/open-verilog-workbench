@@ -1,5 +1,5 @@
 ---
-applyTo: "rtl/**/*.v,tb/**/*.v,tb/**/*.sv"
+applyTo: "rtl/**/*.v,tb/**/*.v,tb/**/*.sv,results/issue-*/rtl/**/*.v,results/issue-*/tb/**/*.v,results/issue-*/tb/**/*.sv"
 ---
 
 Follow these conventions for RTL and unit testbenches in this repository.
@@ -10,7 +10,7 @@ Follow these conventions for RTL and unit testbenches in this repository.
 - Use a **single clock** and **active-low reset** named `rst_n` unless the architecture specifies otherwise.
 - Prefer clear, explicit state machines (one-hot or encoded is fine) with readable state names.
 - Avoid `#delay` in synthesizable code.
-- Keep port naming consistent with `docs/ARCHITECTURE.md`.
+- Keep port naming consistent with the corresponding architecture documentation (typically `results/issue-<number>/docs/ARCHITECTURE.md` for per-issue workspaces).
 
 ## Testbenches (`tb/*_tb.v`)
 
@@ -28,5 +28,4 @@ Follow these conventions for RTL and unit testbenches in this repository.
 ## Results + gating
 
 - Keep results honest: set “passed” only if you actually ran the sim successfully.
-- If you use `results/` JSON status files, keep them machine-readable and accurate.
 

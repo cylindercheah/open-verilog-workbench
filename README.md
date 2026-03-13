@@ -23,7 +23,7 @@ Users typically do **not** need to understand the internals of `.github`. The no
 2. Choose one of the templates:
    - **Docs: Create / improve documentation**
    - **Testbench: Generate TB from RTL**
-   - (Fix template, if enabled in this repo)
+   - **Fix: RTL/TB compile or simulation issues**
 3. Attach your Verilog/SystemVerilog files (and logs for Fix) or reference in-repo paths.
 4. Submit the issue and let Copilot/agents handle the rest using the instructions in this folder.
 
