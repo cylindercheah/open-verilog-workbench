@@ -1,0 +1,40 @@
+name: "Fix: RTL/TB compile or simulation issues"
+description: "Fix compile errors, simulation failures, or wrong behavior in your attached RTL/testbench"
+title: "[Fix] "
+labels: ["bug", "rtl", "testbench", "help wanted"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### How to use this template
+
+        1. Attach the failing **RTL/testbench files** and any relevant **logs** (compiler output, simulator logs, screenshots of waveforms if helpful).
+        2. Paste the **exact command(s)** you are running and what you expected vs what actually happened.
+        3. Copilot/agents will reproduce the problem where possible and propose minimal fixes.
+
+  - type: textarea
+    id: files
+    attributes:
+      label: "Attached RTL / TB files and logs"
+      description: "Attach the files that are failing plus any logs or waveform screenshots. If files live in this repo, you can list their paths."
+      placeholder: |
+        Attach files above and/or list paths here, for example:
+
+        - rtl/foo.v
+        - tb/foo_tb.sv
+        - logs/foo_sim.log
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Describe the problem"
+      description: "Describe what is going wrong (compile error, simulation failure, wrong behavior)."
+      placeholder: |-
+        - What command or tool are you running? (include version if possible)
+        - What did you expect to happen?
+        - What actually happened? (error messages, wrong waveform, etc.)
+    validations:
+      required: true

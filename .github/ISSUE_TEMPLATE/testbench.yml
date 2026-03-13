@@ -1,0 +1,43 @@
+name: "Testbench: Generate TB from RTL"
+description: "Generate or improve a testbench based on your attached RTL"
+title: "[TB] "
+labels: ["testbench", "help wanted"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### How to use this template
+
+        1. Attach the Verilog/SystemVerilog **RTL file(s)** for the design you want to test.
+        2. Optionally attach any **existing testbench** you want improved.
+        3. Describe what the testbench should verify and any important clock/reset or corner-case requirements.
+
+        Copilot/agents will read your attachments and create/update `tb/<module>_tb.{v,sv}`.
+
+  - type: textarea
+    id: files
+    attributes:
+      label: "Attached RTL / existing TB files"
+      description: "Attach the RTL for the DUT and any existing testbench. If they already live in this repo, you can list the paths (e.g. rtl/foo.v, tb/foo_tb.sv)."
+      placeholder: |
+        Attach files above and/or list paths here, for example:
+
+        - rtl/foo.v
+        - tb/foo_tb.sv
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Describe the testbench you need"
+      description: "Explain what the testbench should verify and what scenarios matter most."
+      value: |
+        Please help create or improve a testbench for my Verilog design.
+
+        - What this testbench should verify:
+        - Any important clock/reset details:
+        - Any special corner cases you care about:
+    validations:
+      required: true

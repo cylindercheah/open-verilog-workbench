@@ -1,0 +1,41 @@
+name: "Docs: Create / improve documentation"
+description: "Generate documentation for your Verilog RTL and/or testbench from attached files"
+title: "[Docs] "
+labels: ["docs", "help wanted"]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### How to use this template
+
+        1. Attach your Verilog/SystemVerilog **RTL and/or testbench files** to this issue (drag & drop or use the file picker).
+        2. Tell us which modules you want documented and what level of detail you expect.
+        3. Submit the issue; Copilot/agents will read your attachments and generate/update `docs/<module>.md`.
+
+  - type: textarea
+    id: files
+    attributes:
+      label: "Attached RTL / testbench files"
+      description: "Attach the files you want documented. If they already live in this repo, you can just list the paths (e.g. rtl/foo.v, tb/foo_tb.sv)."
+      placeholder: |
+        Attach files above and/or list paths here, for example:
+
+        - rtl/foo.v
+        - tb/foo_tb.sv
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "What documentation do you want?"
+      description: "Explain which module(s) you want documented and what kind of explanation you are looking for."
+      value: |-
+        Please document the following Verilog/testbench files or modules.
+
+        - What this design does (in your own words):
+        - Any important timing/reset assumptions:
+        - Anything that is confusing or needs extra explanation:
+    validations:
+      required: true
