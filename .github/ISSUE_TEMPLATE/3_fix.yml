@@ -10,14 +10,31 @@ body:
         ### How to use this template
 
         1. Attach the failing **RTL/testbench files** and any relevant **logs** (compiler output, simulator logs, screenshots of waveforms if helpful).
-        2. Paste the **exact command(s)** you are running and what you expected vs what actually happened.
-        3. Copilot/agents will reproduce the problem where possible and propose minimal fixes.
+        2. If GitHub does not accept `.v` / `.sv` files, compress them into a `.zip` or push them to this repo and reference their paths.
+        3. Paste the **exact command(s)** you are running (compile + run) and what you expected vs what actually happened.
+        4. Copilot/agents will reproduce the problem where possible and propose minimal fixes.
+        5. For how Copilot/agents should behave in this repo, see `.github/copilot-instructions.md`.
+        6. For testbench expectations (logging, waveforms, reproducibility), see `.github/instructions/TB.md`.
 
   - type: textarea
     id: files
     attributes:
       label: "Attached RTL / TB files and logs"
       description: "Attach the files that are failing plus any logs or waveform screenshots. If files live in this repo, you can list their paths."
+      value: |
+        For Copilot/agents:
+
+        - Use any attached RTL/testbench files and logs (including `.v`, `.sv`, `.vh`, `.log`, screenshots, or `.zip` archives) and/or the repo paths listed in this field as the single source of truth.
+        - If direct `.v`/`.sv` uploads failed with “File type … not supported”, assume the user either attached a `.zip` or provided in-repo paths and read those files instead.
+        - Reproduce the failure with the user-provided commands when possible. If commands are missing, infer the minimal `iverilog` + `vvp` flow consistent with this repo and clearly state what you ran.
+        - Keep reproduction artifacts under `results/issue-<number>/build/` (do not delete older artifacts for that issue):
+          - `compile.log` (command + stdout/stderr),
+          - `sim.log` (command + stdout/stderr),
+          - waveform outputs (e.g. `*_tb.vcd`) when relevant.
+        - Propose **minimal fixes** to RTL/TB that address the root cause (compilation error, assertion failure, wrong behavior), and explain why the change is correct.
+        - If you touch testbenches, follow `.github/instructions/TB.md` (self-checking, deterministic, VCD/logs).
+        - In your final response, include: what failed, what changed, how to re-run, and where the logs/VCDs are located.
+        - Follow the general behavior rules in `.github/copilot-instructions.md`.
       placeholder: |
         Attach files above and/or list paths here, for example:
 
@@ -36,5 +53,6 @@ body:
         - What command or tool are you running? (include version if possible)
         - What did you expect to happen?
         - What actually happened? (error messages, wrong waveform, etc.)
+        - If you have a known-good expected output or waveform property, describe it precisely.
     validations:
       required: true

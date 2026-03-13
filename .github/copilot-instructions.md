@@ -16,9 +16,17 @@ As Copilot/agent, always treat the issue body + attachments as the **single sour
 
 ## Mapping from issues to tasks
 
-- `.github/ISSUE_TEMPLATE/docs.yml` → **Documentation task** for attached RTL/TB.
-- `.github/ISSUE_TEMPLATE/testbench.yml` → **Testbench generation/improvement** based on attached RTL.
-- `.github/ISSUE_TEMPLATE/fix.yml` → **Debug/fix** for attached RTL/TB and logs.
+- `.github/ISSUE_TEMPLATE/1_docs.yml` → **Documentation task** for attached RTL/TB.
+- `.github/ISSUE_TEMPLATE/2_testbench.yml` → **Testbench generation/improvement** based on attached RTL.
+- `.github/ISSUE_TEMPLATE/3_fix.yml` → **Debug/fix** for attached RTL/TB and logs.
+
+## Instruction files (must follow)
+
+This repo uses instruction docs under `.github/instructions/`:
+
+- `.github/instructions/VERILOG.md`: RTL + TB coding conventions (auto-applies to `rtl/**/*.v` and `tb/**/*.{v,sv}` via `applyTo` frontmatter).
+- `.github/instructions/TB.md`: testbench structure, logging/artifact expectations, and per-issue `REPORT.md` requirements.
+- `.github/instructions/DOCS.md`: documentation standards for per-issue docs under `results/issue-<number>/docs/`.
 
 Do **not** depend on any external planning JSON or legacy `results/` / `PLAN.md` files. Everything you need should be in:
 
@@ -46,16 +54,17 @@ When users attach standalone files (not yet in the repo), you should:
 
 When the **Docs** template is used:
 
-1. Read all attached RTL/TB files and any existing `docs/*.md` for context.
-2. For each module the user calls out, generate or update `docs/<module>.md` with:
+1. Read all attached RTL/TB files and any existing `results/issue-<number>/docs/*.md` for context.
+2. Generate or update documentation under `results/issue-<number>/docs/` following `.github/instructions/DOCS.md`.
+3. For each module the user calls out, generate or update `results/issue-<number>/docs/<module>.md` (or fold into `results/issue-<number>/docs/ARCHITECTURE.md` for single-module issues) with:
    - high-level purpose and behavior,
    - ports table (direction, width, meaning),
    - parameters and defaults,
    - reset behavior and any latency/timing assumptions,
    - a short usage example when possible,
    - links back to `rtl/<module>.v` and `tb/<module>_tb.{v,sv}`.
-3. Where it improves readability, add or refine **brief inline comments** in the relevant RTL/testbench files to clarify intent, non-obvious timing/handshake behavior, or protocol assumptions. Keep comments consistent with the code and the docs, and avoid restating the obvious.
-4. Keep documentation **technical and concise**, matching the actual RTL, not guesses.
+4. Where it improves readability, add or refine **brief inline comments** in the relevant RTL/testbench files to clarify intent, non-obvious timing/handshake behavior, or protocol assumptions. Keep comments consistent with the code and the docs, and avoid restating the obvious.
+5. Keep documentation **technical and concise**, matching the actual RTL, not guesses.
 
 ## Workflow 2: Generate / improve testbench from RTL
 

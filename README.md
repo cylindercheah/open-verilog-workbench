@@ -61,7 +61,7 @@ Copilot/agents should:
 - Use the canonical layout (`rtl/`, `tb/`, `docs/`, `build/`) for any new files.
 - Keep per-issue work self-contained under `results/issue-<number>/`.
 - Follow the conventions in:
-  - `.github/instructions/verilog.instructions.md` – RTL/TB coding standards.
+  - `.github/instructions/VERILOG.md` – RTL/TB coding standards.
   - `.github/instructions/TB.md` – testbench behavior and structure.
   - `.github/instructions/DOCS.md` – documentation standards.
   - `.github/copilot-instructions.md` – end-to-end workflow and quality bars.

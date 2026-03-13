@@ -4,7 +4,7 @@ applyTo: "tb/**/*.v,tb/**/*.sv,results/issue-*/tb/**/*.v,results/issue-*/tb/**/*
 
 # Testbench instructions (open-verilog-workbench)
 
-This file defines how **testbenches** should look and behave for this repository. It complements `.github/instructions/verilog.instructions.md` and `.github/copilot-instructions.md`.
+This file defines how **testbenches** should look and behave for this repository. It complements `.github/instructions/VERILOG.md` and `.github/copilot-instructions.md`.
 
 ## Goals
 
