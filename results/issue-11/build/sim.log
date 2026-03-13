@@ -1,0 +1,97 @@
+VCD info: dumpfile results/issue-11/build/reed_solomon_ecc_tb.vcd opened for output.
+=== Reed-Solomon ECC Testbench START (issue-11) ===
+--- S0: Reset check ---
+  pass [       S0 vld8=0]
+  pass [       S0 err8=0]
+  pass [    S0 cw_out8=0]
+  pass [       S0 vld4=0]
+  pass [      S0 vld16=0]
+  pass [      S0 vld32=0]
+  pass [      S0 vld64=0]
+  pass [     S0 vld128=0]
+--- S1: DUT8 encode 0xAB, decode round-trip ---
+  pass [S1 vld after enc]
+  pass [a byte preserved]
+    codeword[39:0] = 0x95027b47ab
+  pass [S1 vld deasserts]
+  pass [S1 vld after dec]
+  pass [ decoded data=AB]
+  pass [rror on clean cw]
+--- S2: DUT8 encode 0x00 (all-zero) ---
+  pass [          S2 vld]
+  pass [      S2 zero-cw]
+  pass [error on zero cw]
+  pass [ decoded data=00]
+--- S3: DUT8 encode 0xFF round-trip ---
+  pass [S3 vld after enc]
+    codeword[39:0] = 0x3147e56cff
+  pass [ decoded data=FF]
+  pass [on clean 0xFF cw]
+--- S4: DUT8 error detect – corrupt parity byte ---
+  pass [4 error detected]
+--- S5: DUT8 error detect – corrupt data byte ---
+  pass [5 error detected]
+--- S6: DUT8 error_corrected=0 (placeholder) ---
+  pass [ err_corrected=0]
+--- S7: DUT8 back-to-back encodes ---
+  pass [S7 bb enc c1 vld]
+  pass [S7 bb enc c2 vld]
+  pass [7 bb enc c2 data]
+  pass [S7 bb enc c3 vld]
+  pass [7 bb enc c3 data]
+--- S8: DUT8 simultaneous encode+decode ---
+  pass [d on sim enc+dec]
+--- S9: DUT8 async reset mid-operation ---
+  pass [ vld=0 after rst]
+  pass [9 cw=0 after rst]
+  pass [vld after re-rst]
+  pass [ata after re-rst]
+--- S10: DUT4 encode 0xA (nibble), decode round-trip ---
+  pass [10 vld after enc]
+  pass [nibble preserved]
+  pass [pper nibble zero]
+    codeword[39:0] = 0xba17c1660a
+  pass [10 vld after dec]
+  pass [decoded nibble=A]
+  pass [rror on clean cw]
+--- S10b: DUT4 error detect on corrupted codeword ---
+  pass [b error detected]
+--- S11: DUT16 encode 0xBEEF, decode round-trip ---
+  pass [11 vld after enc]
+  pass [ bytes preserved]
+    codeword[47:0] = 0x680e7641beef
+  pass [11 vld after dec]
+  pass [S11 decoded=BEEF]
+  pass [1 no error clean]
+--- S11b: DUT16 error detect ---
+  pass [b error detected]
+--- S12: DUT32 encode 0xDEADBEEF, decode round-trip ---
+  pass [12 vld after enc]
+  pass [ bytes preserved]
+    codeword[63:0] = 0xb5bb1438deadbeef
+  pass [12 vld after dec]
+  pass [decoded=DEADBEEF]
+  pass [2 no error clean]
+--- S12b: DUT32 error detect ---
+  pass [b error detected]
+--- S13: DUT64 encode 0xCAFEBABEDEAD1234, decode ---
+  pass [13 vld after enc]
+  pass [3 data preserved]
+    codeword[95:0] = 0x01037710cafebabedead1234
+  pass [13 vld after dec]
+  pass [ecoded correctly]
+  pass [3 no error clean]
+--- S13b: DUT64 error detect – corrupt data byte 0 ---
+  pass [b error detected]
+--- S14: DUT128 encode 128-bit pattern, decode ---
+  pass [14 vld after enc]
+  pass [4 data preserved]
+    codeword[159:128] (parity) = 0xf2e50603
+  pass [14 vld after dec]
+  pass [ecoded correctly]
+  pass [4 no error clean]
+--- S14b: DUT128 error detect on corrupted codeword ---
+  pass [b error detected]
+=== Reed-Solomon ECC Testbench END (issue-11) ===
+RESULT: ALL TESTS PASSED
+results/issue-11/tb/reed_solomon_ecc_tb.sv:644: $finish called at 670000 (1ps)
