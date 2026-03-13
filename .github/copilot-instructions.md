@@ -34,6 +34,7 @@ This repo uses **per-issue workspaces** under `results/` so multiple users can w
 - `results/issue-<number>/tb/`: testbenches for that issue (e.g. `results/issue-123/tb/uart_rx_tb.sv`).
 - `results/issue-<number>/docs/`: Markdown docs for that issue (e.g. `results/issue-123/docs/uart_rx.md`).
 - `results/issue-<number>/build/`: compiled simulation outputs and VCDs for that issue.
+ - `results/issue-<number>/REPORT.md`: human-readable summary of testbenches, how they were run, and their coverage/results for that issue.
 
 When users attach standalone files (not yet in the repo), you should:
 
@@ -61,17 +62,29 @@ When the **Docs** template is used:
 When the **Testbench** template is used:
 
 1. Read the attached RTL (and any existing TB) and the user’s description of what to verify.
-2. Create or update a deterministic, self-checking testbench in `tb/<module>_tb.{v,sv}` that:
+2. Create or update a deterministic, self-checking testbench in `tb/<module>_tb.{v,sv}` (or `results/issue-<number>/tb/<module>_tb.{v,sv}` for per-issue artifacts) that:
    - instantiates the DUT with the correct ports/parameters,
    - generates clock and active-low reset (`rst_n`, unless told otherwise),
    - drives nominal scenarios and the edge/corner cases described in the issue,
    - uses assertions or explicit `$fatal` checks for pass/fail,
    - optionally dumps VCD to `build/<module>.vcd` (or similar) for debugging.
 3. Add brief, targeted comments in the testbench where they clarify non-obvious stimulus, protocol assumptions, or important corner cases, without restating obvious signal names or logic.
-4. In your explanation/PR, clearly describe:
-   - which behaviors and corner cases the testbench currently exercises, and
-   - any important scenarios or coverage gaps that are not yet tested but should be considered.
-5. Include example commands in the PR description for how to build and run with Icarus Verilog.
+4. Compile and run the testbench with Icarus Verilog, writing artifacts under `results/issue-<number>/build/`:
+   - simulator binaries (e.g. `<module>.out` or `a.out`),
+   - waveform files (e.g. `<module>_tb.vcd`),
+   - text logs such as `compile.log` and `sim.log` capturing the exact commands and their output.
+   Do not delete previous artifacts for that issue; instead, append or add new files so the full history is preserved.
+5. Create or update `results/issue-<number>/REPORT.md` that, at minimum, includes:
+   - **DUT and testbench list**: which modules were tested and corresponding TB files.
+   - **How to run**: the exact `iverilog` / `vvp` commands used and where artifacts were written.
+   - **Results**: pass/fail status for each testbench and any notable errors.
+   - **Coverage description**: which behaviors and corner cases are exercised.
+   - **Gaps/limitations**: important scenarios that are not yet covered or require manual inspection.
+6. In your explanation/PR, clearly describe:
+   - which behaviors and corner cases the testbench currently exercises,
+   - any important scenarios or coverage gaps that are not yet tested but should be considered,
+   - and point the user to `results/issue-<number>/REPORT.md` for the detailed run log and artifact locations.
+7. Include example commands in the PR description for how to build and run with Icarus Verilog, keeping them consistent with what you actually ran for `REPORT.md`.
 
 ## Workflow 3: Fix RTL/TB compile or simulation issues
 

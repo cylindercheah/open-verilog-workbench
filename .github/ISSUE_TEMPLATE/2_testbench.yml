@@ -17,6 +17,7 @@ body:
         6. For detailed expectations on testbenches, see `.github/instructions/TB.md`.
         7. For how Copilot/agents should behave in this repo, see `.github/copilot-instructions.md`.
         8. As part of the answer, Copilot/agents should also explain what **behaviors and corner cases** the generated testbench covers and mention any obvious coverage gaps.
+        9. Copilot/agents must **run the testbench**, keep all build artifacts under `results/issue-<number>/build/`, and generate/update a `results/issue-<number>/REPORT.md` summarizing the testbenches, their coverage, and the pass/fail results.
 
   - type: textarea
     id: files
@@ -30,7 +31,14 @@ body:
         - If direct .v/.sv uploads failed with “File type .v not supported”, assume the user either attached a .zip or provided in-repo paths and read those files instead.
         - Create or update deterministic, self-checking testbenches under `tb/` (or `results/issue-<number>/tb/` when appropriate) following `.github/instructions/TB.md`.
         - Add concise comments in the testbench to clarify non-obvious stimulus, protocol assumptions, and important corner cases, keeping them consistent with the RTL and any docs.
-        - In your explanation back to the user, summarize which behaviors and corner cases are covered by the testbench and highlight any significant coverage gaps or untested scenarios.
+        - Compile and run the testbench with Icarus Verilog, writing all build artifacts (e.g. `.out` binaries, `.vcd` waveforms, and `compile.log` / `sim.log`) under `results/issue-<number>/build/` without deleting previous files for that issue.
+        - Create or update `results/issue-<number>/REPORT.md` with:
+          - a list of generated/improved testbenches and their DUTs,
+          - the exact compile/run commands used and where logs/VCDs were written,
+          - a summary of which behaviors and corner cases are covered,
+          - any known coverage gaps or limitations,
+          - the overall pass/fail status for each testbench.
+        - In your explanation back to the user, summarize which behaviors and corner cases are covered by the testbench and highlight any significant coverage gaps or untested scenarios, keeping it consistent with `REPORT.md`.
         - Follow the general behavior rules in `.github/copilot-instructions.md`.
     validations:
       required: true

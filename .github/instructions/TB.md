@@ -59,6 +59,12 @@ This file defines how **testbenches** should look and behave for this repository
   - key scenario boundaries,
   - any detected failures.
 
+All compilation/simulation artifacts for a given issue should be kept under `results/issue-<number>/build/` and **not deleted**, so that future maintainers can see what actually ran. Typical files include:
+
+- `<module>.out` / `a.out` (Icarus Verilog output binaries),
+- `<module>_tb.vcd` (or similar) waveform files,
+- `compile.log` and `sim.log` (text logs capturing the exact commands and their output).
+
 ## Compile and run commands
 
 - Testbenches must compile and run with **Icarus Verilog**. A typical flow is:
@@ -70,6 +76,20 @@ This file defines how **testbenches** should look and behave for this repository
 
   - `iverilog -g2012 -o results/issue-<number>/build/<module>.out results/issue-<number>/tb/<module>_tb.sv results/issue-<number>/rtl/<module>.v`
   - `vvp results/issue-<number>/build/<module>.out`
+
+When you run these commands for an issue, copy/paste the **exact** invocations and their outcomes into `results/issue-<number>/REPORT.md` (see below), and ensure the corresponding artifacts are present under `results/issue-<number>/build/`.
+
+## REPORT.md for each issue
+
+For every issue that involves testbench work, maintain a `results/issue-<number>/REPORT.md` file with, at minimum:
+
+- **DUTs and testbenches**: list each DUT module and its associated testbench file(s).
+- **How to run**: the exact `iverilog` / `vvp` commands used (matching the artifacts in `build/`).
+- **Results**: pass/fail status for each testbench and any notable error messages.
+- **Coverage description**: a short description of which behaviors, edge cases, and corner cases are exercised by each testbench.
+- **Gaps/limitations**: important scenarios that are not yet covered, or any assumptions/manual checks that remain.
+
+Keep `REPORT.md` up to date whenever you add or modify testbenches or re-run simulations, so that anyone can understand what was tested and how to reproduce it from the persisted artifacts.
 
 ## Guidance for Copilot/agents
 
