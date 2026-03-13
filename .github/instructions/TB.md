@@ -38,6 +38,17 @@ This file defines how **testbenches** should look and behave for this repository
   - Use explicit checks with `$fatal`, `$error`, or `$display` + final pass/fail summary.
 - Avoid purely waveform-inspection testbenches that rely on a human to decide pass/fail.
 
+## Comments and coverage hints
+
+- Add **brief, targeted comments** in the testbench to clarify:
+  - the intent of non-obvious stimulus sequences,
+  - why particular corner cases are included,
+  - any protocol/timing assumptions that are not obvious from the signals alone.
+- When evaluating or updating a testbench, call out in the PR/issue description:
+  - which behaviors and corner cases are currently covered by the testbench,
+  - any important scenarios that are **not yet covered** (gaps/limitations),
+  - whether additional coverage mechanisms (e.g. functional coverage, extra scenarios) are recommended.
+
 ## Waveforms and logs
 
 - Dump a VCD (or similar) waveform to a predictable location, for example:

@@ -67,7 +67,11 @@ When the **Testbench** template is used:
    - drives nominal scenarios and the edge/corner cases described in the issue,
    - uses assertions or explicit `$fatal` checks for pass/fail,
    - optionally dumps VCD to `build/<module>.vcd` (or similar) for debugging.
-3. Include example commands in the PR description for how to build and run with Icarus Verilog.
+3. Add brief, targeted comments in the testbench where they clarify non-obvious stimulus, protocol assumptions, or important corner cases, without restating obvious signal names or logic.
+4. In your explanation/PR, clearly describe:
+   - which behaviors and corner cases the testbench currently exercises, and
+   - any important scenarios or coverage gaps that are not yet tested but should be considered.
+5. Include example commands in the PR description for how to build and run with Icarus Verilog.
 
 ## Workflow 3: Fix RTL/TB compile or simulation issues
 
