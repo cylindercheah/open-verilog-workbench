@@ -1,0 +1,6 @@
+Command: iverilog -g2012 -o results/issue-12/build/reed_solomon_ecc_tb.out \
+  results/issue-12/tb/reed_solomon_ecc_tb.sv \
+  results/issue-12/rtl/reed_solomon_ecc.v \
+  results/issue-12/rtl/reed_solomon_ecc_w{4,8,16,32,64,128}.v
+
+Exit code: 0

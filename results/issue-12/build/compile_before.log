@@ -1,0 +1,5 @@
+Command: iverilog -g2012 -o results/issue-12/build/reed_solomon_ecc_broken.out   /tmp/reed_solomon_ecc_error/reed_solomon_ecc.v   /tmp/reed_solomon_ecc_error/reed_solomon_ecc_w4.v   /tmp/reed_solomon_ecc_error/reed_solomon_ecc_w8.v   /tmp/reed_solomon_ecc_error/reed_solomon_ecc_w16.v   /tmp/reed_solomon_ecc_error/reed_solomon_ecc_w32.v   /tmp/reed_solomon_ecc_error/reed_solomon_ecc_w64.v   /tmp/reed_solomon_ecc_error/reed_solomon_ecc_w128.v
+
+/tmp/reed_solomon_ecc_error/reed_solomon_ecc.v:29: error: Superfluous comma in port declaration list.
+
+Exit code: 0
