@@ -1,0 +1,63 @@
+# Simulation log — true_random_generator testbench (issue #3)
+# Command:
+vvp results/issue-3/build/true_random_generator_tb.out
+
+VCD info: dumpfile results/issue-3/build/true_random_generator_tb.vcd opened for output.
+=== true_random_generator_tb ===
+
+[S0] Reset: all outputs de-asserted while rst_n=0
+  PASS  A data_valid=0 in reset
+  PASS  A random_data=0 in reset
+  PASS  A test_failed=1 in reset (random_data==0)
+  PASS  B data_valid=0 in reset
+  PASS  B random_data=0 in reset
+  PASS  B test_failed=1 in reset (random_data==0)
+
+[S1] DUT-A (LFSR mode): enable -> wait data_valid
+  PASS  A entropy_low=1 early in collection
+  PASS  A data_valid=0 still collecting
+  PASS  A data_valid rises within MAX_WAIT
+  A first value = 0xf13d39f5
+  PASS  A random_data != all-zeros
+  PASS  A random_data != all-ones
+  PASS  A entropy_low=0 after full collection
+  PASS  A test_failed consistent with output
+
+[S2] DUT-A: read_next -> re-collect -> new value
+  PASS  A data_valid=0 after read_next (re-collecting)
+  PASS  A data_valid rises again after read_next
+  A second value = 0x8f551fc5
+  PASS  A second value differs from first
+
+[S3] DUT-A: disable in READY state -> IDLE
+  PASS  A data_valid=0 after disable
+  PASS  A random_data=0 after disable
+
+[S4] DUT-A: disable mid-collection -> IDLE
+  PASS  A still collecting (data_valid=0)
+  PASS  A data_valid=0 after mid-collect disable
+
+[S5] DUT-A: re-enable after disable -> fresh collection
+  PASS  A data_valid rises after re-enable
+  A third value = 0xf2deb79b
+
+[S6] DUT-B (ring-osc mode): enable -> wait data_valid
+  PASS  B data_valid rises within MAX_WAIT
+  B first value = 0x62e5e1e6
+  PASS  B test_failed consistent with output
+
+[S7] DUT-B: read_next -> new value
+  PASS  B data_valid=0 after read_next (re-collecting)
+  PASS  B data_valid rises again after read_next
+  B second value = 0x69e4aee3
+
+[S8] Synchronous reset mid-operation (both DUTs)
+  PASS  A data_valid=0 after mid-op reset
+  PASS  A random_data=0 after reset
+  PASS  B data_valid=0 after mid-op reset
+  PASS  B random_data=0 after reset
+
+=== Simulation complete: 29 passed, 0 failed ===
+ALL CHECKS PASSED
+results/issue-3/tb/true_random_generator_tb.sv:339: $finish called at 2805000 (1ps)
+Exit code: 0

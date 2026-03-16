@@ -1,0 +1,8 @@
+# Compile log — true_random_generator testbench (issue #3)
+# Command:
+iverilog -g2012 \
+    -o results/issue-3/build/true_random_generator_tb.out \
+    results/issue-3/tb/true_random_generator_tb.sv \
+    results/issue-3/rtl/true_random_generator.v
+
+Exit code: 0
